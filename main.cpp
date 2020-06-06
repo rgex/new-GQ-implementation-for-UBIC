@@ -24,7 +24,7 @@ int main() {
     unsigned char messageHash[SHA256_DIGEST_LENGTH];
     sha256_string("Signed message", messageHash);
 
-    RSA *rsa = RSA_generate_key(2048, 65537, 0, 0); //key length: 2048 bits, exponent: 65537
+    RSA *rsa = RSA_generate_key(512, 65537, 0, 0); //key length: 2048 bits, exponent: 65537
 
     unsigned char sigret[2048/8];
     unsigned int siglen;
@@ -44,6 +44,9 @@ int main() {
     const BIGNUM *n = BN_new();
     const BIGNUM *e = BN_new();
     RSA_get0_key(rsa, &n, &e, nullptr);
+
+    std::cout << "n: " << BN_bn2hex(n) << std::endl;
+    std::cout << "e (dec): " << BN_bn2dec(e) << std::endl;
 
     NtpRskSignatureRequestObject ntpRskSignatureRequestObject;
     ntpRskSignatureRequestObject.setN(n);
