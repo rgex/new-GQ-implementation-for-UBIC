@@ -15,11 +15,6 @@ if(APPLE)
     #link_directories(/usr/local/src/openssl-1.1.0f/)
     link_directories(/usr/local/opt/openssl@1.1/lib)
     link_libraries(crypto.1.1)
-
-    link_directories(/usr/local/opt/pcsc-lite/lib/)
-    include_directories(/usr/local/opt/pcsc-lite/include/PCSC/)
-    link_libraries(pcsclite)
-
 elseif(UNIX)
     include_directories(/usr/include/openssl/)
     link_libraries(crypto)
